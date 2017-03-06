@@ -1,0 +1,2 @@
+# MIPS_FPGA_on_Sword_v1
+MIPS_FPGA相关的源码在ZJU_Sword平台，第一版本上面的实现。
