@@ -1,0 +1,12 @@
+关于移植问题：
+主要有三个地方需要考虑。
+1  boot大小控制
+a)	bit流文件大小
+b)	cache和启动代码与用户代码的大小
+c)	确保RAM为Block RAM，否则需要修改MIPSFPGA当中RAM实现的相关代码
+
+2  使用Vivado软件对应的下板平台的修改。
+
+3  在MIPSFPGA头文件当中修改对应的内存声明大小
+a)	H_RAM_RESET_ADDR_WIDTH 表示启动代码大小
+b)	H_RAM_ADDR_WIDTH 表示 Program 用户代码大小
