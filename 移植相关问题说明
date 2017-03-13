@@ -1,6 +1,6 @@
 关于移植问题：
 主要有三个地方需要考虑。
-1  boot大小控制
+1	boot大小控制
 a)	bit流文件大小
 b)	cache和启动代码与用户代码的大小
 c)	确保RAM为Block RAM，否则需要修改MIPSFPGA当中RAM实现的相关代码
