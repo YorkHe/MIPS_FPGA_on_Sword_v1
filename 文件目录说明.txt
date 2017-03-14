@@ -1,0 +1,12 @@
+文件夹说明：
+Constraints -- 引脚约束文件(Vivado使用xdc文件约束)
+Non-module Files -- 非模块化文件
+Source Code -- 源码文件
+	Clk -- 时钟相关源码
+	Ram -- RAM源码，主要是ssram
+	Sucreg -- sucreg寄存器
+	Sys -- MIPS_FPGA系统源码
+	Testbench -- 测试文件
+	Top -- 顶层文件，根据不同的FPGA制定不同的顶层
+Text -- 初始化文件，包含程序和RAM初始化
+Verilog Header -- Verilog头文件，相关函数定义
