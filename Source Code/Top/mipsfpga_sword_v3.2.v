@@ -1,4 +1,4 @@
-// mipsfpga_sword_v1
+// mipsfpga_sword_v3.2
 // 14 March 2017
 //
 // Instantiate the mipsfpga system and rename signals to
@@ -9,12 +9,12 @@
 
 `include "define.vh"
 
-module mipsfpga_sword_v1(
+module mipsfpga_sword_v3.2(
                         input CLK100MHZ,
                         input	CPU_RESETN,
                         //button
                         output [4:0] btn_x,
-                        input  [3:0] btn_y,
+                        input  [4:0] btn_y,
 
                         //switch
                         input  [15:0] sw,
@@ -22,24 +22,21 @@ module mipsfpga_sword_v1(
                         //Seg
                         output seg_clk,
                         output seg_pen,
-                        output seg_clr_n,
                         output seg_do,
 
                         //led
                         output led_clk,
                         output led_pen,
-                        output led_clr_n,
                         output led_do,
 
-						            output [7:0] led,
 
                         //LED RGB
-                        output tri_led0_r_n,
-                        output tri_led0_g_n,
-                        output tri_led0_b_n,
-                        output tri_led1_r_n,
-                        output tri_led1_g_n,
-                        output tri_led1_b_n,
+                        output tri_led0_r,
+                        output tri_led0_g,
+                        output tri_led0_b,
+                        output tri_led1_r,
+                        output tri_led1_g,
+                        output tri_led1_b,
 
                         // VGA
                         output vga_h_sync,
@@ -48,12 +45,7 @@ module mipsfpga_sword_v1(
                         output [3:0] vga_green,
                         output [3:0] vga_blue,
 
-                        //Keyboard
-                        output ps2_clk,
-                        output ps2_data,
 
-            						//Buzzer
-            						output  buzzer,
 
                         //Pmod
                         inout  [ 8:1] JB);
@@ -75,7 +67,7 @@ module mipsfpga_sword_v1(
 
   // anti-jitter
   wire [15:0] switch_buf;
-  wire [3:0] btn_y_buf;
+  wire [4:0] btn_y_buf;
   localparam
 		CLK_FREQ_SYS = 50,
 		CLK_FREQ_BUS = 25,
@@ -106,6 +98,7 @@ module mipsfpga_sword_v1(
           AJY1 (.clk(clk_out), .rst(1'b0), .sig_i(btn_y[1]), .sig_o(btn_y_buf[1])),
           AJY2 (.clk(clk_out), .rst(1'b0), .sig_i(btn_y[2]), .sig_o(btn_y_buf[2])),
           AJY3 (.clk(clk_out), .rst(1'b0), .sig_i(btn_y[3]), .sig_o(btn_y_buf[3]));
+          AJY4 (.clk(clk_out), .rst(1'b0), .sig_i(btn_y[4]), .sig_o(btn_y_buf[4]));
     `else
      assign switch_buf = sw;
      assign btn_y_buf = btn_y;
@@ -132,25 +125,23 @@ module mipsfpga_sword_v1(
                     .IO_Switch(switch_buf),
                     .IO_PB_O(btn_x),
                     .IO_PB_I(btn_y_buf),
-                    .IO_LED_RGB({tri_led0_r_n, tri_led0_g_n, tri_led0_b_n, tri_led1_r_n, tri_led1_g_n, tri_led1_b_n}),
+                    .IO_LED_RGB({tri_led0_r, tri_led0_g, tri_led0_b, tri_led1_r, tri_led1_g, tri_led1_b}),
                     .seg_clk(seg_clk),
                     .seg_pen(seg_pen),
-                    .seg_clr_n(seg_clr_n),
+                    .seg_clr_n(),
                     .seg_do(seg_do),
                     .led_clk(led_clk),
                     .led_pen(led_pen),
-                    .led_clr_n(led_clr_n),
+                    .led_clr_n(),
                     .led_do(led_do),
                     .vga_h_sync(vga_h_sync),
                     .vga_v_sync(vga_v_sync),
                     .vga_red(vga_red),
                     .vga_green(vga_green),
                     .vga_blue(vga_blue),
-                    .ps2_clk(ps2_clk),
-                    .ps2_data(ps2_clk)
+                    .ps2_clk(),
+                    .ps2_data()
                     );
 
 
-  assign buzzer = 1'h1;
-  assign led[7:0] = switch_buf[15:8];
 endmodule
