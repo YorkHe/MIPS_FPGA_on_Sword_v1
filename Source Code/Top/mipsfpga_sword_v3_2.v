@@ -97,7 +97,7 @@ module mipsfpga_sword_v3.2(
           AJY0 (.clk(clk_out), .rst(1'b0), .sig_i(btn_y[0]), .sig_o(btn_y_buf[0])),
           AJY1 (.clk(clk_out), .rst(1'b0), .sig_i(btn_y[1]), .sig_o(btn_y_buf[1])),
           AJY2 (.clk(clk_out), .rst(1'b0), .sig_i(btn_y[2]), .sig_o(btn_y_buf[2])),
-          AJY3 (.clk(clk_out), .rst(1'b0), .sig_i(btn_y[3]), .sig_o(btn_y_buf[3]));
+          AJY3 (.clk(clk_out), .rst(1'b0), .sig_i(btn_y[3]), .sig_o(btn_y_buf[3])),
           AJY4 (.clk(clk_out), .rst(1'b0), .sig_i(btn_y[4]), .sig_o(btn_y_buf[4]));
     `else
      assign switch_buf = sw;
