@@ -98,18 +98,17 @@ set_property -dict { PACKAGE_PIN R18   IOSTANDARD LVCMOS33 } [get_ports { vga_v_
 
 
 ##Pmod Header JB
+set_property -dict { PACKAGE_PIN C9    IOSTANDARD LVCMOS33 } [get_ports { JB[1] }]; 
+set_property -dict { PACKAGE_PIN E11   IOSTANDARD LVCMOS33 } [get_ports { JB[2] }]; 
+set_property -dict { PACKAGE_PIN D11   IOSTANDARD LVCMOS33 } [get_ports { JB[3] }]; 
+set_property -dict { PACKAGE_PIN F12   IOSTANDARD LVCMOS33 } [get_ports { JB[4] }]; 
+set_property -dict { PACKAGE_PIN E10   IOSTANDARD LVCMOS33 } [get_ports { JB[5] }]; 
+set_property -dict { PACKAGE_PIN D10   IOSTANDARD LVCMOS33 } [get_ports { JB[6] }]; 
+set_property -dict { PACKAGE_PIN C11   IOSTANDARD LVCMOS33 } [get_ports { JB[7] }]; 
+set_property PULLUP true [get_ports {JB[7]}]
 
-#set_property -dict { PACKAGE_PIN AC26   IOSTANDARD LVCMOS33 } [get_ports { JB[1] }]; 
-#set_property -dict { PACKAGE_PIN Y25    IOSTANDARD LVCMOS33 } [get_ports { JB[2] }]; 
-#set_property -dict { PACKAGE_PIN Y26    IOSTANDARD LVCMOS33 } [get_ports { JB[3] }]; 
-#set_property -dict { PACKAGE_PIN AA23   IOSTANDARD LVCMOS33 } [get_ports { JB[4] }]; 
-#set_property -dict { PACKAGE_PIN AB24   IOSTANDARD LVCMOS33 } [get_ports { JB[5] }]; 
-#set_property -dict { PACKAGE_PIN Y23    IOSTANDARD LVCMOS33 } [get_ports { JB[6] }]; 
-#set_property -dict { PACKAGE_PIN AA24   IOSTANDARD LVCMOS33 } [get_ports { JB[7] }]; 
-#set_property PULLUP true [get_ports {JB[7]}]
-
-#set_property -dict { PACKAGE_PIN Y22   IOSTANDARD LVCMOS33 } [get_ports { JB[8] }]; 
-#set_property PULLUP true [get_ports {JB[8]}]
+set_property -dict { PACKAGE_PIN E12   IOSTANDARD LVCMOS33 } [get_ports { JB[8] }]; 
+set_property PULLUP true [get_ports {JB[8]}]
 
 #set_property -dict { PACKAGE_PIN G13   IOSTANDARD LVCMOS33 } [get_ports { JB[9] }]; 
 #set_property -dict { PACKAGE_PIN H16   IOSTANDARD LVCMOS33 } [get_ports { JB[10] }];
