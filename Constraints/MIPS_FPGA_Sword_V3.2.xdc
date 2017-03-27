@@ -4,7 +4,7 @@
 ## - rename the used ports (in each line, after get_ports) according to the top level signal names in the project
 
 ## Clock signal
-set_property -dict { PACKAGE_PIN AB16    IOSTANDARD LVCMOS18 } [get_ports { CLK100MHZ }]; Sch=clk100mhz
+set_property -dict { PACKAGE_PIN AB16    IOSTANDARD LVCMOS18 } [get_ports { CLK100MHZ }];
 create_clock -add -name sys_clk_pin -period 10.00 -waveform {0 5} [get_ports {CLK100MHZ}];
 
 set_property -dict { PACKAGE_PIN AF13    IOSTANDARD LVCMOS15 } [get_ports { CPU_RESETN }];
@@ -83,20 +83,6 @@ set_property -dict { PACKAGE_PIN R18   IOSTANDARD LVCMOS33 } [get_ports { vga_v_
 
 
 ##Pmod Headers
-
-
-##Pmod Header JA
-
-#set_property -dict { PACKAGE_PIN C17   IOSTANDARD LVCMOS33 } [get_ports { JA[1] }]; 
-#set_property -dict { PACKAGE_PIN D18   IOSTANDARD LVCMOS33 } [get_ports { JA[2] }]; 
-#set_property -dict { PACKAGE_PIN E18   IOSTANDARD LVCMOS33 } [get_ports { JA[3] }]; 
-#set_property -dict { PACKAGE_PIN G17   IOSTANDARD LVCMOS33 } [get_ports { JA[4] }]; 
-#set_property -dict { PACKAGE_PIN D17   IOSTANDARD LVCMOS33 } [get_ports { JA[7] }]; 
-#set_property -dict { PACKAGE_PIN E17   IOSTANDARD LVCMOS33 } [get_ports { JA[8] }]; 
-#set_property -dict { PACKAGE_PIN F18   IOSTANDARD LVCMOS33 } [get_ports { JA[9] }]; 
-#set_property -dict { PACKAGE_PIN G18   IOSTANDARD LVCMOS33 } [get_ports { JA[10] }];
-
-
 ##Pmod Header JB
 set_property -dict { PACKAGE_PIN C9    IOSTANDARD LVCMOS33 } [get_ports { JB[1] }]; 
 set_property -dict { PACKAGE_PIN E11   IOSTANDARD LVCMOS33 } [get_ports { JB[2] }]; 
@@ -109,46 +95,6 @@ set_property PULLUP true [get_ports {JB[7]}]
 
 set_property -dict { PACKAGE_PIN E12   IOSTANDARD LVCMOS33 } [get_ports { JB[8] }]; 
 set_property PULLUP true [get_ports {JB[8]}]
-
-#set_property -dict { PACKAGE_PIN G13   IOSTANDARD LVCMOS33 } [get_ports { JB[9] }]; 
-#set_property -dict { PACKAGE_PIN H16   IOSTANDARD LVCMOS33 } [get_ports { JB[10] }];
-
-
-##Pmod Header JC
-
-#set_property -dict { PACKAGE_PIN K1    IOSTANDARD LVCMOS33 } [get_ports { JC[1] }]; 
-#set_property -dict { PACKAGE_PIN F6    IOSTANDARD LVCMOS33 } [get_ports { JC[2] }]; 
-#set_property -dict { PACKAGE_PIN J2    IOSTANDARD LVCMOS33 } [get_ports { JC[3] }]; 
-#set_property -dict { PACKAGE_PIN G6    IOSTANDARD LVCMOS33 } [get_ports { JC[4] }]; 
-#set_property -dict { PACKAGE_PIN E7    IOSTANDARD LVCMOS33 } [get_ports { JC[7] }]; 
-#set_property -dict { PACKAGE_PIN J3    IOSTANDARD LVCMOS33 } [get_ports { JC[8] }]; 
-#set_property -dict { PACKAGE_PIN J4    IOSTANDARD LVCMOS33 } [get_ports { JC[9] }]; 
-#set_property -dict { PACKAGE_PIN E6    IOSTANDARD LVCMOS33 } [get_ports { JC[10] }];
-
-
-##Pmod Header JD
-
-#set_property -dict { PACKAGE_PIN H4    IOSTANDARD LVCMOS33 } [get_ports { JD[1] }]; 
-#set_property -dict { PACKAGE_PIN H1    IOSTANDARD LVCMOS33 } [get_ports { JD[2] }]; 
-#set_property -dict { PACKAGE_PIN G1    IOSTANDARD LVCMOS33 } [get_ports { JD[3] }]; 
-#set_property -dict { PACKAGE_PIN G3    IOSTANDARD LVCMOS33 } [get_ports { JD[4] }]; 
-#set_property -dict { PACKAGE_PIN H2    IOSTANDARD LVCMOS33 } [get_ports { JD[7] }]; 
-#set_property -dict { PACKAGE_PIN G4    IOSTANDARD LVCMOS33 } [get_ports { JD[8] }]; 
-#set_property -dict { PACKAGE_PIN G2    IOSTANDARD LVCMOS33 } [get_ports { JD[9] }]; 
-#set_property -dict { PACKAGE_PIN F3    IOSTANDARD LVCMOS33 } [get_ports { JD[10] }];
-
-
-##Pmod Header JXADC
-
-#set_property -dict { PACKAGE_PIN A14   IOSTANDARD LVDS     } [get_ports { XA_N[1] }]; 
-#set_property -dict { PACKAGE_PIN A13   IOSTANDARD LVDS     } [get_ports { XA_P[1] }]; 
-#set_property -dict { PACKAGE_PIN A16   IOSTANDARD LVDS     } [get_ports { XA_N[2] }]; 
-#set_property -dict { PACKAGE_PIN A15   IOSTANDARD LVDS     } [get_ports { XA_P[2] }]; 
-#set_property -dict { PACKAGE_PIN B17   IOSTANDARD LVDS     } [get_ports { XA_N[3] }]; 
-#set_property -dict { PACKAGE_PIN B16   IOSTANDARD LVDS     } [get_ports { XA_P[3] }]; 
-#set_property -dict { PACKAGE_PIN A18   IOSTANDARD LVDS     } [get_ports { XA_N[4] }]; 
-#set_property -dict { PACKAGE_PIN B18   IOSTANDARD LVDS     } [get_ports { XA_P[4] }]; 
-
 
 
 set_property CFGBVS VCCO [current_design]
@@ -170,29 +116,3 @@ create_clock -name "tck" -period 20.0
 # cut all paths to and from "clk_virt", "tck"
 set_clock_groups -physically_exclusive -group "clk_virt"
 set_clock_groups -physically_exclusive -group "tck"
-
-## tsu/th constraints
-#set_input_delay -clock "clk_virt" -min -add_delay 0.000 [get_ports CPU_RESETN]
-#set_input_delay -clock "clk_virt" -max -add_delay 20.000 [get_ports CPU_RESETN]
-##set_input_delay -clock "clk_virt" -min -add_delay 0.000 [get_ports BTNC]
-##set_input_delay -clock "clk_virt" -max -add_delay 20.000 [get_ports BTNC]
-##set_input_delay -clock "clk_virt" -min -add_delay 0.000 [get_ports BTND]
-##set_input_delay -clock "clk_virt" -max -add_delay 20.000 [get_ports BTND]
-##set_input_delay -clock "clk_virt" -min -add_delay 0.000 [get_ports BTNL]
-##set_input_delay -clock "clk_virt" -max -add_delay 20.000 [get_ports BTNL]
-##set_input_delay -clock "clk_virt" -min -add_delay 0.000 [get_ports BTNR]
-##set_input_delay -clock "clk_virt" -max -add_delay 20.000 [get_ports BTNR]
-##set_input_delay -clock "clk_virt" -min -add_delay 0.000 [get_ports BTNU]
-##set_input_delay -clock "clk_virt" -max -add_delay 20.000 [get_ports BTNU]
-#set_input_delay -clock "clk_virt" -min -add_delay 0.000 [get_ports JB[1]]
-#set_input_delay -clock "clk_virt" -max -add_delay 20.000 [get_ports JB[1]]
-#set_input_delay -clock "clk_virt" -min -add_delay 0.000 [get_ports JB[2]]
-#set_input_delay -clock "clk_virt" -max -add_delay 20.000 [get_ports JB[2]]
-#set_input_delay -clock "clk_virt" -min -add_delay 0.000 [get_ports JB[4]]
-#set_input_delay -clock "clk_virt" -max -add_delay 20.000 [get_ports JB[4]]
-
-#set_output_delay -clock "clk_virt" -min -add_delay 0.000 [get_ports {JB[3]}]
-#set_output_delay -clock "clk_virt" -max -add_delay 20.000 [get_ports {JB[3]}]
-
-
-

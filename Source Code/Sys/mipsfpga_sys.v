@@ -20,22 +20,20 @@ module mipsfpga_sys(input         SI_Reset_N,
                     input         EJ_TCK,
                     input         SI_ColdReset_N,
                     input         EJ_DINT,
-                    input  [15:0] IO_Switch,
+                    input  [24:0] IO_Switch,
                     output [4:0] IO_PB_O,
-                    input  [3:0] IO_PB_I,
+                    input  [4:0] IO_PB_I,
                     output [5:0] IO_LED_RGB,
                     
                     
                     //Seg
                     output seg_clk,
                     output seg_pen,
-                    output seg_clr_n,
                     output seg_do,
                     
                     //led
                     output led_clk,
                     output led_pen,
-                    output led_clr_n,
                     output led_do,
                     
                     //VGA
@@ -43,11 +41,7 @@ module mipsfpga_sys(input         SI_Reset_N,
                     output vga_v_sync,
                     output [3:0] vga_red,
                     output [3:0] vga_green,
-                    output [3:0] vga_blue,
-                    
-                    //Keyboard
-                    output ps2_clk,
-                    output ps2_data
+                    output [3:0] vga_blue
                                             
                     );
 
@@ -308,7 +302,7 @@ module mipsfpga_sys(input         SI_Reset_N,
 
 // AHB module that sits on AHB-Lite bus
 
-    mipsfpga_ahb mipsfpga_ahb(HCLK, SI_ClkIn_25, HRESETn, HADDR, HBURST, HMASTLOK, HPROT, HSIZE, HTRANS, HWDATA, HWRITE, HRDATA, HREADY, HRESP, SI_Endian, IO_Switch, IO_PB_O, IO_PB_I, IO_LED_RGB, seg_clk, seg_pen, seg_clr_n, seg_do, led_clk, led_pen, led_clr_n, led_do, vga_h_sync, vga_v_sync, vga_red, vga_green, vga_blue, ps2_clk, ps2_data);
+    mipsfpga_ahb mipsfpga_ahb(HCLK, SI_ClkIn_25, HRESETn, HADDR, HBURST, HMASTLOK, HPROT, HSIZE, HTRANS, HWDATA, HWRITE, HRDATA, HREADY, HRESP, SI_Endian, IO_Switch, IO_PB_O, IO_PB_I, IO_LED_RGB, seg_clk, seg_pen, seg_do, led_clk, led_pen, led_do, vga_h_sync, vga_v_sync, vga_red, vga_green, vga_blue);
 
 // Module for hardware reset of EJTAG just after FPGA configuration
 // It pulses EJ_TRST_N low for 16 clock cycles.

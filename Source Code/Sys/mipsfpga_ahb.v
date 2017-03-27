@@ -31,21 +31,19 @@ module mipsfpga_ahb
     input               SI_Endian,
 
 // memory-mapped I/O
-    input      [ 15: 0] IO_Switch,
+    input      [ 24: 0] IO_Switch,
     output 		[ 4: 0] IO_PB_O,
-    input      [ 3: 0] IO_PB_I,
+    input      [ 4: 0] IO_PB_I,
     output     [ 5: 0] IO_LED_RGB,
 
 //Seg
     output seg_clk,
     output seg_pen,
-    output seg_clr_n,
     output seg_do,
 
 // LED
     output led_clk,
     output led_pen,
-    output led_clr_n,
     output led_do,
     
 //VGA
@@ -53,10 +51,7 @@ module mipsfpga_ahb
     output vga_v_sync,
     output [3:0] vga_red,
     output [3:0] vga_green,
-    output [3:0] vga_blue,
-//Keyboard
-    output ps2_clk,
-    output ps2_data
+    output [3:0] vga_blue
 );
 
 
@@ -86,7 +81,7 @@ module mipsfpga_ahb
   // Module 1
   mipsfpga_ahb_ram mipsfpga_ahb_ram(HCLK, HRESETn, HADDR, HWDATA, HWRITE_d, HSEL[1], HRDATA1);
   // Module 2
-  mipsfpga_ahb_gpio mipsfpga_ahb_gpio(HCLK, HRESETn, HADDR_d[5:2], HWDATA, HWRITE_d, HSEL[2], HRDATA2, IO_Switch, IO_PB_O, IO_PB_I, IO_LED_RGB, seg_clk, seg_pen, seg_clr_n, seg_do, led_clk, led_pen, led_clr_n, led_do);
+  mipsfpga_ahb_gpio mipsfpga_ahb_gpio(HCLK, HRESETn, HADDR_d[5:2], HWDATA, HWRITE_d, HSEL[2], HRDATA2, IO_Switch, IO_PB_O, IO_PB_I, IO_LED_RGB, seg_clk, seg_pen, seg_do, led_clk, led_pen, led_do);
   
   
   // VGA Control
@@ -107,18 +102,6 @@ module mipsfpga_ahb
       
       
       
-      
-  // Keyboard
-  PS2KeyBoard PS2KeyBoard(
-      .clk(~HCLK),			 // 50 MHz
-      .clrn(HRESETn),     
-      .ps2_clk(ps2_clk),      // ps2 clock
-      .ps2_data(ps2_data),     // ps2 data
-      .rdn(),          // read, active high
-      .data(),         // 8-bit code
-      .ready(),        // code ready
-      .overflow()     // fifo overflow
-  );
 
   ahb_decoder ahb_decoder(HADDR_d, HSEL);
   ahb_mux ahb_mux(HSEL, HRDATA2, HRDATA1, HRDATA0, HRDATA);

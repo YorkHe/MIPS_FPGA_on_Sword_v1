@@ -1,3 +1,9 @@
+`include "define.vh"
+/**
+ * Display number using 7-segment tubes.
+ * Author: Zhao, Hongyu  <power_zhy@foxmail.com>
+ * Editor: Frank Shaw    <xiaoqingzhe@gmail.com>
+ */
 module board_disp_sword (
 	input wire clk,  // main clock
 	input wire rst,  // synchronous reset
@@ -10,12 +16,10 @@ module board_disp_sword (
 	// LED interfaces
 	output wire led_clk,		// LED clk
 	output wire led_en,			// LED enable signal
-	output wire led_clr_n,		// LED clear active-low signal
 	output wire led_do,			// LED data out
 	// 7-segment tube interfaces
 	output wire seg_clk,		// Seg clk
 	output wire seg_en,			// Seg enable signal
-	output wire seg_clr_n,		// Seg clear active-low signal
 	output wire seg_do			// Seg data out
 	);
 
@@ -23,7 +27,7 @@ module board_disp_sword (
 	parameter
 		CLK_FREQ = 100;  // main clock frequency in MHz
 	localparam
-		SEG_PULSE = 1'b0;
+		SEG_PULSE = 1'b1;
 	localparam
 		REFRESH_INTERVAL = 100,  // refresh interval for led and segment tubes, in ms
 		COUNT_REFRESH = 1 + CLK_FREQ * REFRESH_INTERVAL * 1000,
@@ -73,9 +77,7 @@ module board_disp_sword (
 
 	assign
 		led_en = 1,
-		led_clr_n = ~led_clr,
-		seg_en = 1,
-		seg_clr_n = ~seg_clr;
+		seg_en = 1;
 
 
 
@@ -84,7 +86,7 @@ module board_disp_sword (
 		.P_CLK_FREQ(CLK_FREQ),
 		.S_CLK_FREQ(20),
 		.DATA_BITS(16),
-		.CODE_ENDIAN(1)
+		.READ_DIRECTION(0)
 		) P2S_LED (
 		.clk(clk),
 		.rst(rst),
@@ -101,7 +103,7 @@ module board_disp_sword (
 		.P_CLK_FREQ(CLK_FREQ),
 		.S_CLK_FREQ(20),
 		.DATA_BITS(64),
-		.CODE_ENDIAN(1)
+		.READ_DIRECTION(0)
 		) P2S_SEG (
 		.clk(clk),
 		.rst(rst),

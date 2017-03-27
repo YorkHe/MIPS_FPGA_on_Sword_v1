@@ -33,25 +33,23 @@ module mipsfpga_ahb_gpio(
     output reg [ 31: 0] HRDATA,
 
 // memory-mapped I/O
-    input      [ 15: 0] IO_Switch,
+    input      [ 24: 0] IO_Switch,
     output	   [ 4: 0] IO_PB_O,
-    input      [ 3: 0] IO_PB_I,
+    input      [ 4: 0] IO_PB_I,
     output reg [ 5: 0] IO_LED_RGB,
     
 //Seg
     output seg_clk,
     output seg_pen,
-    output seg_clr_n,
     output seg_do,
     
 //LED
     output led_clk,
     output led_pen,
-    output led_clr_n,
     output led_do
 );
 
-	 wire [19:0] reg_btn;
+	 wire [24:0] reg_btn;
 	 reg [15:0] led;
 
 	
@@ -68,7 +66,7 @@ module mipsfpga_ahb_gpio(
       case (HADDR)
         `H_LEDA_IONUM: HRDATA = {16'b0, led};
         `H_SW_IONUM: HRDATA = {16'b0, IO_Switch};
-        `H_PB_IONUM: HRDATA = {23'b0, reg_btn};
+        `H_PB_IONUM: HRDATA = {7'b0, reg_btn};
         default:     HRDATA = 32'h00000000;
       endcase
 
@@ -97,11 +95,9 @@ module mipsfpga_ahb_gpio(
 		.led(led),
 		.led_clk(led_clk),
 		.led_en(led_pen),
-		.led_clr_n(led_clr_n),
 		.led_do(led_do), 
 		.seg_clk(seg_clk),
 		.seg_en(seg_pen),
-		.seg_clr_n(seg_clr_n),
 		.seg_do(seg_do)
 		);
 

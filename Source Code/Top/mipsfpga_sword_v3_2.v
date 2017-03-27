@@ -9,7 +9,7 @@
 
 `include "define.vh"
 
-module mipsfpga_sword_v3.2(
+module mipsfpga_sword_v3_2(
                         input CLK100MHZ,
                         input	CPU_RESETN,
                         //button
@@ -128,19 +128,15 @@ module mipsfpga_sword_v3.2(
                     .IO_LED_RGB({tri_led0_r, tri_led0_g, tri_led0_b, tri_led1_r, tri_led1_g, tri_led1_b}),
                     .seg_clk(seg_clk),
                     .seg_pen(seg_pen),
-                    .seg_clr_n(),
                     .seg_do(seg_do),
                     .led_clk(led_clk),
                     .led_pen(led_pen),
-                    .led_clr_n(),
                     .led_do(led_do),
                     .vga_h_sync(vga_h_sync),
                     .vga_v_sync(vga_v_sync),
                     .vga_red(vga_red),
                     .vga_green(vga_green),
-                    .vga_blue(vga_blue),
-                    .ps2_clk(),
-                    .ps2_data()
+                    .vga_blue(vga_blue)
                     );
 
 
