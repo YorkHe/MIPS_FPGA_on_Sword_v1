@@ -57,9 +57,9 @@ module mipsfpga_sword_v3_2(
   wire tck_in, tck;
 
 
-  clk_wiz_0 clk_wiz_0(.clk_in1(CLK100MHZ), .clk_out1(clk_out), .clk_out2(clk_25));
+  //clk_wiz_0 clk_wiz_0(.clk_in1(CLK100MHZ), .clk_out1(clk_out), .clk_out2(clk_25));
 
-  //clk_gen_sword clk_wiz_0(.clk_pad(CLK100MHZ), .clk_100m(), .clk_25m(), .clk_10m(), .locked(), .clk_50m(clk_out));
+  clk_gen_sword clk_wiz_0(.clk_pad(CLK100MHZ), .clk_100m(), .clk_25m(), .clk_10m(), .locked(), .clk_50m(clk_out));
 
   IBUF IBUF1(.O(tck_in),.I(JB[4]));
   BUFG BUFG1(.O(tck), .I(tck_in));

@@ -2,7 +2,7 @@
 //
 // Made after Altera's simple dual-port memory template
 
-module ram_dual_port 
+module ram_dual_port
 #(parameter DATA_WIDTH=8, parameter ADDR_WIDTH=6)
 (
 	input [(DATA_WIDTH-1):0] data,
@@ -16,7 +16,7 @@ module ram_dual_port
 
 	initial
 	begin
-	  $readmemh("D:/Vivado_Project/MIPS_FPGA_SMALL/ram_program_init.txt", ram);
+	  $readmemh("C:/Users/york/Source/Repos/MIPS_FPGA_on_Sword_v1/Text/ram_program_init.txt", ram);
 	end
 
 	always @ (posedge clk)
@@ -29,4 +29,3 @@ module ram_dual_port
 	end
 
 endmodule
-
